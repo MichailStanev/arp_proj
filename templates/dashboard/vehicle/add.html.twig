@@ -1,0 +1,25 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block title %}Hello DashboardController!{% endblock %}
+
+{% block d_content %}
+    <div class="header">
+        <div class="left">
+            <h1>Add Vehicle</h1>
+            {# generate template for the vehicle add form #}
+        </div>
+        <div class="right">
+            <a href="{{ path('app_dashboard_vehicle') }}">Back to list</a>
+        </div>
+    </div>
+    <div class="content">
+        <div class="form">
+            {# generate form #}
+
+
+            {{ form_start(form) }}
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+{% endblock %}
