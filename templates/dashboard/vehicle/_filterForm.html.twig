@@ -1,5 +1,33 @@
 {% block form_filter %}
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    {{ form_end(form) }}
+{{ form_start(form) }}
+<div class="row form-group">
+    <div class="row row-cols-4 gy-3">
+        <div class="col d-flex flex-column">
+            {{ form_label(form.vehicleName) }}
+            {{ form_widget(form.vehicleName) }}
+        </div>
+        <div class="col d-flex flex-column">
+            {{ form_label(form.plateNumber) }}
+            {{ form_widget(form.plateNumber) }}
+        </div>
+        <div class="col d-flex flex-column">
+            {{ form_label(form.category) }}
+            {{ form_widget(form.category) }}
+        </div>
+        <div class="col d-flex flex-column">
+            {{ form_label(form.acquiringDate) }}
+            {{ form_widget(form.acquiringDate) }}
+        </div>
+        <div class="col d-flex flex-column">
+            {{ form_label(form.fuelType) }}
+            {{ form_widget(form.fuelType) }}
+        </div>
+    </div>
+    <div class="row gy-3">
+        <div class="col">
+            {{ form_widget(form.filter) }}
+        </div>
+    </div>
+</div>
+{{ form_end(form) }}
 {% endblock %}

@@ -68,7 +68,7 @@ class VehiclesRepository extends ServiceEntityRepository
         if( null !== $form->get('acquiringDate')->getData()){
             $queryBuilder
                 ->andWhere('entity.acquiringDate LIKE :acquiringDate')
-                ->setParameter('acquiringDate', '%' . $form->get('acquiringDate')->getData() . '%');
+                ->setParameter('acquiringDate', '%' . $form->get('acquiringDate')->getData()->format('Y-m-d') . '%');
         }
 
         if( null !== $form->get('fuelType')->getData()){

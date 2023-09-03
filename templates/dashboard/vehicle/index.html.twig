@@ -49,9 +49,7 @@
 	</table>
 
     <div class="row">
-        <div class="col-12">
-            {% include 'base/paginator.html.twig' with { 'paginator': paginator } only %}
-        </div>
+		{% include 'base/paginator.html.twig' with { 'paginator': paginator } only %}
     </div>
 
 {% endblock %}

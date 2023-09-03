@@ -18,7 +18,7 @@ class VehicleFilterType extends AbstractType
             ->add('category', null, ['required' => false])
             ->add('acquiringDate', null, ['required' => false])
             ->add('fuelType', null, ['required' => false])
-            ->add('filter', SubmitType::class)
+            ->add('filter', SubmitType::class, ['attr' => ['class' => 'btn btn-primary']])
         ;
     }
 
