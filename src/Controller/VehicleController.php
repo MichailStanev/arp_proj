@@ -4,7 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Vehicles;
 use App\Form\VehiclesFormType;
+use App\Form\VehicleFilterType;
+use App\Repository\VehiclesRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Doctrine\ORM\Pagination\Paginator;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,13 +18,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class VehicleController extends AbstractController
 {
     #[Route('/vehicle', name: 'app_dashboard_vehicle')]
-    public function vehicle( EntityManagerInterface  $entityManager ): Response
+    public function vehicle( VehiclesRepository $vehiclesRepository, Request $request ): Response
     {
-        $vehicles = $entityManager->getRepository(Vehicles::class)->findAll();
+        $form = $this->createForm(VehicleFilterType::class);
+        $form->handleRequest($request);
 
-        return $this->render( 'dashboard/vehicle/index.html.twig', [
+        return $this->render('dashboard/vehicle/index.html.twig', [
             'controller_name' => 'DashboardController',
-            'vehicles' => $vehicles
+            'form' => $form->createView(),
+            'paginator' => (new Paginator($vehiclesRepository->getFilterQuery($form, $request)))->paginate($request->get('page',1))
         ]);
     }
 

@@ -1,0 +1,51 @@
+{% if paginator.totalpagescount > 1 %} {#{% if paginator.hasResults %}#}
+    {% set route = app.request.attributes.get('_route') %}
+    {% set params = app.request.attributes.get('_route_params')|merge(app.request.query.all) %}
+
+    <nav>
+        <ul class="pagination flex-wrap justify-content-end">
+            <li class="page-item{{ ((paginator.page == 1) ? ' disabled') }}">
+                <a href="{{ url(route, params|merge({ page: (((paginator.page - 1) < 1) ? 1 : (paginator.page - 1)) })) }}" class="page-link" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+
+            {% set pagesPerSide = 5 %}
+            {% set totalPages =  (pagesPerSide * 2) + 1 %}
+            {% set last = paginator.page + pagesPerSide %}
+            {% set first = paginator.page - pagesPerSide %}
+
+            {% if first <= 0 %}
+                {% set first = 1 %}
+                {% if totalPages < paginator.totalpagescount %}
+                    {% set last = totalPages %}
+                {% else %}
+                    {% set last = paginator.totalpagescount %}
+                {% endif %}
+            {% endif %}
+
+            {% if last > paginator.totalpagescount %}
+                {% set last = paginator.totalpagescount %}
+                {% if paginator.totalpagescount - totalPages > 1 %}
+                    {% set first = paginator.totalpagescount - totalPages %}
+                {% else %}
+                    {% set first = 1 %}
+                {% endif %}
+            {% endif %}
+
+            {% for index in first..last %}
+                <li class="page-item {{ ((paginator.page == index) ? 'active') }}">
+                    <a href="{{ url(route, params|merge({ page: index })) }}" class="page-link">
+                        {{ index }} <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+            {% endfor %}
+
+            <li class="page-item{{ ((paginator.page == paginator.totalpagescount) ? ' disabled') }}">
+                <a href="{{ url(route, params|merge({ page: (((paginator.page + 1) <= paginator.totalpagescount) ? (paginator.page + 1) : paginator.page) })) }}" class="page-link" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+{% endif %}

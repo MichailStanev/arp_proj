@@ -1,44 +1,57 @@
 {% extends 'dashboard/base.html.twig' %}
 
-{% block title %}Vehicles page{% endblock %}
+{% block title %}Vehicles page
+{% endblock %}
 
 {% block d_content %}
-    <div class="header">
-        <div class="left w-100">
-            <h1>Vehicles</h1>
-        </div>
-        <div class="right">
-            <a href="{{ path('app_dashboard_vehicle_add') }}">Add Vehicle</a>
+	{{ include('dashboard/vehicle/_filterForm.html.twig') }}
+
+	<div class="header">
+		<div class="left w-100">
+			<h1>Vehicles</h1>
+		</div>
+		<div class="right">
+			<a href="{{ path('app_dashboard_vehicle_add') }}">Add Vehicle</a>
+		</div>
+	</div>
+
+	<table class="table table-dark table-striped">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Model</th>
+				<th>Plate</th>
+				<th>Type</th>
+				<th>Fuel Type</th>
+				<th>Year</th>
+				<th>Delete</th>
+				<th>Edit</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for vehicle in paginator %}
+				<tr>
+					<td>{{ vehicle.id }}</td>
+					<td>{{ vehicle.vehicleName }}</td>
+					<td>{{ vehicle.plateNumber }}</td>
+					<td>{{ vehicle.category }}</td>
+					<td>{{ vehicle.fuelType }}</td>
+					<td>{{ vehicle.acquiringDate|date("m/d/Y") }}</td>
+					<td>
+						<a href="{{ path('app_dashboard_vehicle_delete', { 'id': vehicle.id }) }}">Delete</a>
+					</td>
+					<td>
+						<a href="{{ path('app_dashboard_vehicle_edit', { 'id': vehicle.id }) }}">Edit</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+    <div class="row">
+        <div class="col-12">
+            {% include 'base/paginator.html.twig' with { 'paginator': paginator } only %}
         </div>
     </div>
-
-            <table class="table table-dark table-striped">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Model</th>
-                        <th>Plate</th>
-                        <th>Type</th>
-                        <th>Fuel Type</th>
-                        <th>Year</th>
-                        <th>Delete</th>
-                        <th>Edit</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for vehicle in vehicles %}
-                        <tr>
-                            <td>{{ vehicle.id }}</td>
-                            <td>{{ vehicle.vehicleName }}</td>
-                            <td>{{ vehicle.plateNumber }}</td>
-                            <td>{{ vehicle.category }}</td>
-                            <td>{{ vehicle.fuelType }}</td>
-                            <td>{{ vehicle.acquiringDate|date("m/d/Y") }}</td>
-                            <td><a href="{{ path('app_dashboard_vehicle_delete', { 'id': vehicle.id }) }}">Delete</a></td>
-                            <td><a href="{{ path('app_dashboard_vehicle_edit', { 'id': vehicle.id }) }}">Edit</a></td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
 
 {% endblock %}

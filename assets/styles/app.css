@@ -24,6 +24,10 @@
     font-family: 'Poppins', sans-serif;
 }
 
+label{
+    color: var(--light-primary);
+}
+
 .bx{
     font-size: 1.7rem;
 }
