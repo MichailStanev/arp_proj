@@ -3,11 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Vehicles;
+use App\Doctrine\Paginator;
 use App\Form\VehiclesFormType;
 use App\Form\VehicleFilterType;
 use App\Repository\VehiclesRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use App\Doctrine\ORM\Pagination\Paginator;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

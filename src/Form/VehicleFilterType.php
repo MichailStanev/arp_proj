@@ -3,9 +3,11 @@
 namespace App\Form;
 
 use App\Entity\Vehicles;
+use App\Constants\CarTypes;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class VehicleFilterType extends AbstractType
@@ -15,7 +17,10 @@ class VehicleFilterType extends AbstractType
         $builder
             ->add('vehicleName', null, ['required' => false])
             ->add('plateNumber', null, ['required' => false])
-            ->add('category', null, ['required' => false])
+            ->add('category', ChoiceType::class, [
+                'required' => false,
+                'choices' => CarTypes::CARTYPES
+            ])
             ->add('acquiringDate', null, ['required' => false])
             ->add('fuelType', null, ['required' => false])
             ->add('filter', SubmitType::class, ['attr' => ['class' => 'btn btn-primary']])

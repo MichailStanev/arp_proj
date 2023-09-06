@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Doctrine\ORM\Pagination;
+namespace App\Doctrine;
 
 use Doctrine\ORM\Tools\Pagination\Paginator as BasePaginator;
 

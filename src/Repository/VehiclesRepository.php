@@ -62,7 +62,7 @@ class VehiclesRepository extends ServiceEntityRepository
         if( null !== $form->get('category')->getData()){
             $queryBuilder
                 ->andWhere('entity.category LIKE :category')
-                ->setParameter('category', '%car%');
+                ->setParameter('category', '%' . $form->get('category')->getData() . '%');
         }
 
         if( null !== $form->get('acquiringDate')->getData()){
