@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Vehicles;
 use App\Constants\CarTypes;
+use App\Constants\FuelTypes;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -22,7 +23,10 @@ class VehicleFilterType extends AbstractType
                 'choices' => CarTypes::CARTYPES
             ])
             ->add('acquiringDate', null, ['required' => false])
-            ->add('fuelType', null, ['required' => false])
+            ->add('fuelType', ChoiceType::class, [
+                'required' => false,
+                'choices' => FuelTypes::FUEL_TYPES,
+            ])
             ->add('filter', SubmitType::class, ['attr' => ['class' => 'btn btn-primary']])
         ;
     }
