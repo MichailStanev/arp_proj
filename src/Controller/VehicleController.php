@@ -14,10 +14,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
-#[Route('/dashboard')]
+#[Route('/')]
 class VehicleController extends AbstractController
 {
-    #[Route('/vehicle', name: 'app_dashboard_vehicle')]
+    #[Route('/vehicles', name: 'app_dashboard_vehicle')]
     public function vehicle( VehiclesRepository $vehiclesRepository, Request $request ): Response
     {
         $form = $this->createForm(VehicleFilterType::class);
@@ -30,7 +30,7 @@ class VehicleController extends AbstractController
         ]);
     }
 
-    #[Route('/vehicle/add', name: 'app_dashboard_vehicle_add')]
+    #[Route('/vehicles/add', name: 'app_dashboard_vehicle_add')]
     public function add( Request $request, EntityManagerInterface $entityManager ): Response
     {
         $vehicle = new Vehicles();
@@ -50,7 +50,7 @@ class VehicleController extends AbstractController
         ]);
     }
 
-    #[Route('/vehicle/edit/{id}', name: 'app_dashboard_vehicle_edit')]
+    #[Route('/vehicles/edit/{id}', name: 'app_dashboard_vehicle_edit')]
     public function edit( Request $request, EntityManagerInterface $entityManager, int $id ): Response
     {
         $vehicle = $entityManager->getRepository(Vehicles::class)->find($id);
@@ -68,7 +68,7 @@ class VehicleController extends AbstractController
         ]);
     }
 
-    #[Route('/vehicle/delete/{id}', name: 'app_dashboard_vehicle_delete')]
+    #[Route('/vehicles/delete/{id}', name: 'app_dashboard_vehicle_delete')]
     public function delete( int $id, EntityManagerInterface $entityManager ): Response
     {
         $vehicle = $entityManager->getRepository(Vehicles::class)->find($id);
