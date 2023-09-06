@@ -1,4 +1,4 @@
-{% extends 'dashboard/base.html.twig' %}
+{% extends 'base/base.html.twig' %}
 
 {% block title %}Vehicles page
 {% endblock %}
@@ -11,7 +11,7 @@
 			<h1>Vehicles</h1>
 		</div>
 		<div class="right">
-			<a href="{{ path('app_dashboard_vehicle_add') }}">Add Vehicle</a>
+			<a class="btn btn-success" href="{{ path('app_dashboard_vehicle_add') }}">Add Vehicle</a>
 		</div>
 	</div>
 
@@ -24,8 +24,7 @@
 				<th>Type</th>
 				<th>Fuel Type</th>
 				<th>Year</th>
-				<th>Delete</th>
-				<th>Edit</th>
+				<th>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -38,10 +37,8 @@
 					<td>{{ vehicle.fuelType }}</td>
 					<td>{{ vehicle.acquiringDate|date("m/d/Y") }}</td>
 					<td>
-						<a href="{{ path('app_dashboard_vehicle_delete', { 'id': vehicle.id }) }}">Delete</a>
-					</td>
-					<td>
-						<a href="{{ path('app_dashboard_vehicle_edit', { 'id': vehicle.id }) }}">Edit</a>
+						<a class="btn btn-danger" href="{{ path('app_dashboard_vehicle_delete', { 'id': vehicle.id }) }}">Delete</a>
+						<a class="btn btn-warning" href="{{ path('app_dashboard_vehicle_edit', { 'id': vehicle.id }) }}">Edit</a>
 					</td>
 				</tr>
 			{% endfor %}

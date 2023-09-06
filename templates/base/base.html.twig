@@ -23,12 +23,6 @@
 							<i class='bx bxs-dashboard'></i>Vehicles</a>
 					</li>
 				</ul>
-				<ul class="side-menu">
-					<li>
-						<a href="{{ path('app_logout') }}" class="logout">
-							<i class='bx bx-log-out-circle'></i>Logout</a>
-					</li>
-				</ul>
 			</div>
 			<!-- End of Sidebar -->
 
@@ -52,9 +46,16 @@
 						<i class='bx bx-bell'></i>
 						<span class="count">12</span>
 					</a>
-					<a href="#" class="profile">
-						<img src="images/logo.png">
-					</a>
+					<div class="dropdown">
+						<a class="profile dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+							<img src="images/logo.png">
+						</a>
+
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+							<li><a class="dropdown-item" href="{{ path('user_settings') }}">User Settings</a></li>
+							<li><a class="dropdown-item" href="{{ path('app_logout') }}">Log Out</a></li>
+						</ul>
+					</div>
 				</nav>
 
 				<!-- End of Navbar -->
