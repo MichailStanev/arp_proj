@@ -1,0 +1,19 @@
+{% extends 'base/base.html.twig' %}
+
+{% block title %}User Settings
+{% endblock %}
+
+{% block d_content %}
+    <div class="header">
+		<div class="left w-100">
+			<h1>User Settings</h1>
+		</div>
+
+		{{ include('security/users/forms/_userSettingsForm.html.twig') }}
+
+		<div class="right">
+			<a href="{{ path('app_logout') }}">Logout</a>
+		</div>
+
+	</div>
+{% endblock %}

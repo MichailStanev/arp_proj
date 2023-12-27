@@ -1,0 +1,29 @@
+{% block form_filter %}
+{{ form_start(form) }}
+<div class="row form-group">
+    <div class="row row-cols-4 gy-3">
+        <div class="col d-flex flex-column">
+            {{ form_label(form.email) }}
+            {{ form_widget(form.email) }}
+        </div>
+        <div class="col d-flex flex-column">
+            {{ form_label(form.currentPassword) }}
+            {{ form_widget(form.currentPassword) }}
+        </div>
+        <div class="col d-flex flex-column">
+            {{ form_label(form.newPassword1) }}
+            {{ form_widget(form.newPassword1) }}
+        </div>
+        <div class="col d-flex flex-column">
+            {{ form_label(form.newPassword2) }}
+            {{ form_widget(form.newPassword2) }}
+        </div>
+    </div>
+    <div class="row gy-3">
+        <div class="col">
+            {{ form_widget(form.submit) }}
+        </div>
+    </div>
+</div>
+{{ form_end(form) }}
+{% endblock %}

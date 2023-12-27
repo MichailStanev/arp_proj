@@ -1,0 +1,46 @@
+{% extends 'base/base.html.twig' %}
+
+{% block title %}Users
+{% endblock %}
+
+{% block d_content %}
+    <div class="header">
+		<div class="left w-100">
+			<h1>Users</h1>
+		</div>
+	</div>
+
+	<table class="table table-dark table-striped">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>E-Mail</th>
+				<th>Roles</th>
+				<th>Password</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for user in paginator %}
+				<tr>
+					<td>{{ user.id }}</td>
+					<td>{{ user.email }}</td>
+					<td>
+					{% for role in user.roles %}
+						{{ role }},
+					{% endfor %}
+					</td>
+					<td>{{ user.password }}</td>
+					<td>
+						<a class="btn btn-danger" href="{{ path('app_delete_user', { 'id': user.id }) }}">Delete</a>
+						<a class="btn btn-warning" href="{{ path('app_edit_user', { 'id': user.id }) }}">Edit</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+    <div class="row">
+		{% include 'base/paginator.html.twig' with { 'paginator': paginator } only %}
+    </div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base/base.html.twig' %}
+
+{% block title %}Edit User
+{% endblock %}
+
+{% block d_content %}
+    <div class="header">
+		<div class="left w-100">
+			<h1>Edit User</h1>
+		</div>
+
+		{{ include('security/users/forms/_editUserForm.html.twig') }}
+	</div>
+{% endblock %}
